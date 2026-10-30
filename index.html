@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#212529">
+  <meta name="description" content="Steven Senjaya — ICT teacher and coding educator.">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Steven Senjaya | Personal Portfolio</title>
+  <style>
+    :root { --dark: #212529; --text: #252a30; --muted: #65707c; --light: #f5f6f8; --border: #e2e6ea; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body { margin: 0; color: var(--text); font-family: Arial, Helvetica, sans-serif; line-height: 1.6; }
+    a { color: inherit; }
+    .container { width: min(1080px, calc(100% - 36px)); margin: 0 auto; }
+    .navbar { background: var(--dark); color: #fff; position: sticky; top: 0; z-index: 10; }
+    .nav-inner { min-height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { text-decoration: none; font-size: 1.1rem; font-weight: 700; white-space: nowrap; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { text-decoration: none; color: #e7e9ec; font-size: .95rem; }
+    .nav-links a:hover, .footer-links a:hover { color: #fff; text-decoration: underline; }
+    .menu-toggle { display: none; border: 1px solid #777; border-radius: 6px; background: transparent; color: white; padding: 7px 10px; font-size: 1.1rem; cursor: pointer; }
+    .hero { background: var(--dark); color: white; text-align: center; padding: 55px 0 58px; }
+    .hero h1 { margin: 0 0 22px; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; font-weight: 700; }
+    .hero-img { width: 180px; height: 180px; object-fit: cover; object-position: center; border: 4px solid white; border-radius: 50%; box-shadow: 0 0 15px #0005; }
+    .hero p { margin: 16px 0 0; font-size: 1.2rem; color: #e2e6ea; }
+    section { padding: 54px 0; }
+    h2 { margin: 0 0 28px; text-align: center; font-size: 1.8rem; font-weight: 600; }
+    .about-copy { width: min(740px, 100%); margin: 0 auto; text-align: center; font-size: 1.05rem; }
+    .experience, .videos { background: var(--light); }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .card { display: flex; flex-direction: column; min-width: 0; background: #fff; border: 1px solid #eceff2; border-radius: 7px; overflow: hidden; box-shadow: 0 3px 10px #0000000d; text-align: center; }
+    .card-top { height: 112px; display: grid; place-items: center; padding: 12px 18px; background: #fff; border-bottom: 1px solid #edf0f2; }
+    .company-logo { display: block; max-width: 88%; max-height: 84px; width: auto; height: auto; object-fit: contain; }
+    .card-body { padding: 19px 18px 21px; flex: 1; }
+    .card h3 { margin: 0 0 5px; font-size: 1.12rem; line-height: 1.35; }
+    .date { color: var(--muted); font-size: .88rem; margin: 0 0 12px; }
+    .card p { margin: 0; font-size: .96rem; }
+    .video-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .video-card { background: white; border-radius: 7px; overflow: hidden; border: 1px solid #e7eaed; box-shadow: 0 3px 10px #0000000d; }
+    .video-frame { aspect-ratio: 16 / 9; display: grid; place-items: center; background: #242a31; color: white; position: relative; overflow: hidden; }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-placeholder { text-align: center; color: #d9dde1; padding: 20px; }
+    .play-icon { width: 48px; height: 48px; margin: 0 auto 10px; border: 2px solid #fff9; border-radius: 50%; display: grid; place-items: center; font-size: 1.2rem; }
+    .video-placeholder span { display: block; font-size: .88rem; }
+    .video-thumb-link { position: absolute; inset: 0; display: grid; place-items: center; color: white; text-decoration: none; background: #242a31; }
+    .video-thumb-link img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+    .video-thumb-link::after { content: "▶"; position: relative; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; color: #fff; background: #d9232e; font-size: 1.25rem; padding-left: 3px; box-shadow: 0 2px 12px #0007; }
+    .video-thumb-link:hover::after { transform: scale(1.08); }
+    .video-body { padding: 15px 16px 17px; }
+    .video-body h3 { margin: 0 0 5px; font-size: 1.05rem; }
+    .video-body p { color: var(--muted); font-size: .9rem; margin: 0; }
+    .watch-link { display: inline-block; margin-top: 11px; color: #285a91; font-size: .9rem; font-weight: 700; text-decoration: none; }
+    .watch-link:hover { text-decoration: underline; }
+    .local-video-note { margin: 18px 0 0; text-align: center; color: var(--muted); font-size: .88rem; }
+    .contact { text-align: center; }
+    .contact p { margin: -10px 0 22px; color: var(--muted); }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+    .contact-links a { display: inline-block; padding: 9px 17px; border-radius: 5px; background: var(--dark); color: white; text-decoration: none; font-size: .95rem; }
+    .contact-links a:hover { background: #3e4852; }
+    footer { background: var(--dark); color: white; text-align: center; padding: 24px 16px; }
+    footer p { margin: 0 0 10px; font-size: .92rem; color: #dce0e4; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; }
+    .footer-links a { color: white; text-decoration: none; font-size: .92rem; }
+    @media (max-width: 780px) { .cards, .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 600px) {
+      .menu-toggle { display: inline-block; }
+      .nav-inner { flex-wrap: wrap; padding: 11px 0; }
+      .nav-links { display: none; width: 100%; flex-direction: column; align-items: flex-start; gap: 0; padding: 6px 0 2px; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 9px 0; width: 100%; }
+      .hero { padding: 42px 0 46px; }
+      .hero-img { width: 156px; height: 156px; }
+      section { padding: 43px 0; }
+      .cards, .video-grid { grid-template-columns: 1fr; }
+      .card-top { height: 100px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">Steven Senjaya</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#videos">Teaching Videos</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container">
+      <h1>Hello, I'm Steven Senjaya</h1>
+      <img class="hero-img" src="steven_senjaya_pic.jpeg" alt="Steven Senjaya">
+      <p>ICT Teacher &bull; Coding Educator </p>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <p class="about-copy">I'm an ICT teacher who enjoys making technology easier to understand. Through clear explanations and practical, project-based learning, I help students build digital literacy, web development, and programming skills.</p>
+      </div>
+    </section>
+
+    <section class="experience" id="experience">
+      <div class="container">
+        <h2>Teaching Experience</h2>
+        <!--
+          ADD YOUR SCHOOL / COMPANY LOGOS:
+          1. Create a folder named "logos" beside this HTML file.
+          2. Put each logo image in that folder using the filenames below.
+          3. PNG, JPG, or WEBP files are fine; if you use another extension, update that image's src.
+
+          Required filenames:
+          - sekolah-harapan-prestasi.png
+          - kanaan-global-school.png
+          - stella-maris-gading-serpong.png
+          - koding-next.png
+          - brightchamps.png
+          - timedoor-indonesia.png
+        -->
+        <div class="cards">
+          <article class="card">
+            <div class="card-top"><img class="company-logo" src="logos/sekolah-harapan-prestasi.png" alt="Sekolah Harapan Prestasi logo"></div>
+            <div class="card-body">
+              <h3>Sekolah Harapan Prestasi</h3>
+              <div class="date">Jul 2026 – Present</div>
+              <p>Teaching ICT, coding, and web development to Grades 6–9.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><img class="company-logo" src="logos/kanaan-global-school.png" alt="Kanaan Global School logo"></div>
+            <div class="card-body">
+              <h3>Kanaan Global School</h3>
+              <div class="date">Feb 2025 – Jun 2026</div>
+              <p>Teaching Cambridge IGCSE ICT and preparing students for practical and theory assessments.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><img class="company-logo" src="logos/stella-maris-gading-serpong.png" alt="Stella Maris Gading Serpong logo"></div>
+            <div class="card-body">
+              <h3>Stella Maris Gading Serpong</h3>
+              <div class="date">Jul 2023 – Jan 2025</div>
+              <p>Teaching coding, Python, mobile app development, and applied AI.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><img class="company-logo" src="logos/koding-next.png" alt="Koding Next logo"></div>
+            <div class="card-body">
+              <h3>Koding Next</h3>
+              <div class="date">Jul 2023 – Jan 2025</div>
+              <p>Teaching programming and web development, and supporting teacher training.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><img class="company-logo" src="logos/brightchamps.png" alt="BrightChamps logo"></div>
+            <div class="card-body">
+              <h3>BrightChamps</h3>
+              <div class="date">Jan 2023 – May 2023</div>
+              <p>Delivering online programming lessons to young learners.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-top"><img class="company-logo" src="logos/timedoor-indonesia.png" alt="Timedoor Indonesia logo"></div>
+            <div class="card-body">
+              <h3>Timedoor Indonesia</h3>
+              <div class="date">Feb 2022 – Jul 2022</div>
+              <p>Teaching block-based and text-based programming to children.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="videos" id="videos">
+      <div class="container">
+        <h2>Teaching Videos</h2>
+        <div class="video-grid" id="videoGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2>Contact Me</h2>
+        <p>I'd be happy to connect about teaching opportunities.</p>
+        <div class="contact-links">
+          <a href="mailto:stevensenjaya8@gmail.com">Email</a>
+          <a href="https://wa.me/6289610768199" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/steven-senjaya/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Steven Senjaya</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/steven-senjaya/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:stevensenjaya8@gmail.com">Email</a>
+      <a href="https://www.youtube.com/@StevenSenjaya" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://www.instagram.com/stevensenjaya8" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    // Replace the example URLs below with your own YouTube video links or 11-character video IDs.
+    const teachingVideos = [
+      { title: "Excited Students", description: "The students here came forward to listen without even being asked to do so.", url: "https://youtu.be/I627G3L5YqU" },
+      { title: "Solving Past Papers", description: "Past paper solving", url: "https://www.youtube.com/watch?v=TZfCA53bd5A" },
+      { title: "Rewarding Students", description: "Students are rewarded with points and pens to boost their motivation.", url: "https://youtube.com/shorts/JbOytWKizLA" }
+    ];
+
+    function getYouTubeId(value) {
+      if (!value || /^VIDEO_URL_/i.test(value.trim())) return "";
+      const input = value.trim();
+      if (/^[\w-]{11}$/.test(input)) return input;
+      try {
+        const url = new URL(input);
+        const host = url.hostname.replace(/^www\./, "");
+        if (host === "youtu.be") return url.pathname.split("/").filter(Boolean)[0] || "";
+        if (host.endsWith("youtube.com") || host === "youtube-nocookie.com") {
+          if (url.searchParams.get("v")) return url.searchParams.get("v");
+          const parts = url.pathname.split("/").filter(Boolean);
+          const embedIndex = parts.findIndex(part => ["embed", "shorts", "live"].includes(part));
+          if (embedIndex >= 0) return parts[embedIndex + 1] || "";
+        }
+      } catch (error) {
+        return "";
+      }
+      return "";
+    }
+
+    const videoGrid = document.getElementById("videoGrid");
+    const openedFromFile = window.location.protocol === "file:";
+
+    teachingVideos.forEach((video, index) => {
+      const id = getYouTubeId(video.url);
+      const card = document.createElement("article");
+      card.className = "video-card";
+      const frame = document.createElement("div");
+      frame.className = "video-frame";
+
+      if (id && openedFromFile) {
+        // A file:// page has no normal HTTP Referer. Use a thumbnail link locally to avoid YouTube error 153.
+        const thumbnailLink = document.createElement("a");
+        thumbnailLink.className = "video-thumb-link";
+        thumbnailLink.href = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
+        thumbnailLink.target = "_blank";
+        thumbnailLink.rel = "noopener noreferrer";
+        thumbnailLink.setAttribute("aria-label", `Watch ${video.title} on YouTube`);
+        const thumbnail = document.createElement("img");
+        thumbnail.src = `https://img.youtube.com/vi/${encodeURIComponent(id)}/hqdefault.jpg`;
+        thumbnail.alt = "";
+        thumbnailLink.appendChild(thumbnail);
+        frame.appendChild(thumbnailLink);
+      } else if (id) {
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(id)}?rel=0`;
+        iframe.title = video.title || `Teaching Video ${index + 1}`;
+        iframe.loading = "lazy";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        frame.appendChild(iframe);
+      } else {
+        const placeholder = document.createElement("div");
+        placeholder.className = "video-placeholder";
+        placeholder.innerHTML = '<div class="play-icon" aria-hidden="true">&#9654;</div><span>Add a YouTube link in the teachingVideos list</span>';
+        frame.appendChild(placeholder);
+      }
+
+      const body = document.createElement("div");
+      body.className = "video-body";
+      const title = document.createElement("h3");
+      title.textContent = video.title || `Teaching Video ${index + 1}`;
+      const desc = document.createElement("p");
+      desc.textContent = video.description || "";
+      body.append(title, desc);
+
+      if (id) {
+        const watchLink = document.createElement("a");
+        watchLink.className = "watch-link";
+        watchLink.href = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
+        watchLink.target = "_blank";
+        watchLink.rel = "noopener noreferrer";
+        watchLink.textContent = "Watch on YouTube ↗";
+        body.appendChild(watchLink);
+      }
+
+      card.append(frame, body);
+      videoGrid.appendChild(card);
+    });
+
+    if (openedFromFile) document.getElementById("localVideoNote").hidden = false;
+
+    // Hide a logo image cleanly until its matching image file has been added.
+    document.querySelectorAll(".company-logo").forEach(image => {
+      image.addEventListener("error", () => { image.hidden = true; });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const toggle = document.querySelector(".menu-toggle");
+    const navLinks = document.getElementById("navLinks");
+    toggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }));
+  </script>
+</body>
+</html>
