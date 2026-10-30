@@ -46,7 +46,7 @@
     .video-placeholder span { display: block; font-size: .88rem; }
     .video-thumb-link { position: absolute; inset: 0; display: grid; place-items: center; color: white; text-decoration: none; background: #242a31; }
     .video-thumb-link img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
-    .video-thumb-link::after { content: "▶"; position: relative; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; color: #fff; background: #d9232e; font-size: 1.25rem; padding-left: 3px; box-shadow: 0 2px 12px #0007; }
+    .video-thumb-link::after { content: "▶"; position: relative; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; color: #fff; background: #d9232e; font-size: 1.25rem; z-index: 1; transition: transform .15s ease; }
     .video-thumb-link:hover::after { transform: scale(1.08); }
     .video-body { padding: 15px 16px 17px; }
     .video-body h3 { margin: 0 0 5px; font-size: 1.05rem; }
@@ -105,27 +105,13 @@
     <section id="about">
       <div class="container">
         <h2>About Me</h2>
-        <p class="about-copy">I'm an ICT teacher who enjoys making technology easier to understand. Through clear explanations and practical, project-based learning, I help students build digital literacy, web development, and programming skills.</p>
+        <p class="about-copy">I'm an ICT teacher who enjoys making technology easier to understand. Through clear explanations and practical, project-based learning, I help students build digital literacy, confidence, and problem-solving skills. I design engaging lessons that combine theory with real-world applications, helping learners connect classroom learning to everyday technology use.</p>
       </div>
     </section>
 
     <section class="experience" id="experience">
       <div class="container">
         <h2>Teaching Experience</h2>
-        <!--
-          ADD YOUR SCHOOL / COMPANY LOGOS:
-          1. Create a folder named "logos" beside this HTML file.
-          2. Put each logo image in that folder using the filenames below.
-          3. PNG, JPG, or WEBP files are fine; if you use another extension, update that image's src.
-
-          Required filenames:
-          - sekolah-harapan-prestasi.png
-          - kanaan-global-school.png
-          - stella-maris-gading-serpong.png
-          - koding-next.png
-          - brightchamps.png
-          - timedoor-indonesia.png
-        -->
         <div class="cards">
           <article class="card">
             <div class="card-top"><img class="company-logo" src="logos/sekolah-harapan-prestasi.png" alt="Sekolah Harapan Prestasi logo"></div>
@@ -193,7 +179,6 @@
         <div class="contact-links">
           <a href="mailto:stevensenjaya8@gmail.com">Email</a>
           <a href="https://wa.me/6289610768199" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a href="https://www.linkedin.com/in/steven-senjaya/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -202,7 +187,6 @@
   <footer>
     <p>&copy; <span id="year"></span> Steven Senjaya</p>
     <div class="footer-links">
-      <a href="https://www.linkedin.com/in/steven-senjaya/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="mailto:stevensenjaya8@gmail.com">Email</a>
       <a href="https://www.youtube.com/@StevenSenjaya" target="_blank" rel="noopener noreferrer">YouTube</a>
       <a href="https://www.instagram.com/steven_senjaya_ict_teacher" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -210,7 +194,6 @@
   </footer>
 
   <script>
-    // Replace the example URLs below with your own YouTube video links or 11-character video IDs.
     const teachingVideos = [
       { title: "Excited Students", description: "The students here came forward to listen without even being asked to do so.", url: "https://youtu.be/I627G3L5YqU" },
       { title: "Solving Past Papers", description: "Past paper solving to prepare students for the IGCSE exam.", url: "https://www.youtube.com/watch?v=TZfCA53bd5A" },
@@ -248,7 +231,6 @@
       frame.className = "video-frame";
 
       if (id && openedFromFile) {
-        // A file:// page has no normal HTTP Referer. Use a thumbnail link locally to avoid YouTube error 153.
         const thumbnailLink = document.createElement("a");
         thumbnailLink.className = "video-thumb-link";
         thumbnailLink.href = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
@@ -300,7 +282,6 @@
 
     if (openedFromFile) document.getElementById("localVideoNote").hidden = false;
 
-    // Hide a logo image cleanly until its matching image file has been added.
     document.querySelectorAll(".company-logo").forEach(image => {
       image.addEventListener("error", () => { image.hidden = true; });
     });
